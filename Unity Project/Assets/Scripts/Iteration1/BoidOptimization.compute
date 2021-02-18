@@ -1,0 +1,151 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+StructuredBuffer<float3> In;
+StructuredBuffer<float3> InDir;
+int NumberOfBoids;
+float ViewDist;
+float ViewDistTooClose;
+
+//Test#3
+
+[numthreads(340,3,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	//Default result of 0, black.
+	float4 result = float4(0, 0, 0, 0);
+	
+	//We check to see if we even have this many boids.
+	if (id.x < NumberOfBoids)
+	{
+		//We perform a certain calculation for each behaviour
+		//Each behaviour is one dimention of threads.
+		if (id.y == 0)//AVERAGE CLOSE POS -> COHESION
+		{
+			int closeCount = 0;
+			for (int i = 0; i < NumberOfBoids; i++)
+			{
+				//A manual squared 3D euclidian norm.
+				float distanceCalc = ((In[id.x].x - In[i].x) * (In[id.x].x - In[i].x)) +
+					((In[id.x].y - In[i].y) * (In[id.x].y - In[i].y)) +
+					((In[id.x].z - In[i].z) * (In[id.x].z - In[i].z));
+
+				if (distanceCalc < ViewDist)
+				{
+					//Averaging nearby boid positions
+					result += float4(In[i].x - In[id.x].x, In[i].y - In[id.x].y, In[i].z - In[id.x].z, 1);
+
+					closeCount++;
+				}
+			}
+			result /= closeCount;
+		}
+		else if(id.y == 1)//AVERAGE CLOSE DIR -> ALIGNMENT
+		{
+			int closeCount = 0;
+			for (int i = 0; i < NumberOfBoids; i++)
+			{
+				//A manual squared 3D euclidian norm.
+				float distanceCalc = ((In[id.x].x - In[i].x) * (In[id.x].x - In[i].x)) +
+					((In[id.x].y - In[i].y) * (In[id.x].y - In[i].y)) +
+					((In[id.x].z - In[i].z) * (In[id.x].z - In[i].z));
+
+				if (distanceCalc < ViewDist)
+				{
+					//Averaging nearby boid directions
+					result += float4(InDir[i].x - InDir[id.x].x, InDir[i].y - InDir[id.x].y, InDir[i].z - InDir[id.x].z, 1);
+
+					closeCount++;
+				}
+			}
+			result /= closeCount;
+		}
+		if (id.y == 2)//NEGATIVE AVERAGE TOO CLOSE DIR -> AVOIDANCE
+		{
+			int closeCount = 0;
+			for (int i = 0; i < NumberOfBoids; i++)
+			{
+				//A manual squared 3D euclidian norm.
+				float distanceCalc = ((In[id.x].x - In[i].x) * (In[id.x].x - In[i].x)) +
+					((In[id.x].y - In[i].y) * (In[id.x].y - In[i].y)) +
+					((In[id.x].z - In[i].z) * (In[id.x].z - In[i].z));
+
+				if (distanceCalc < ViewDistTooClose)
+				{
+					//Averaging the positions of boids that are TOO CLOSE!
+					result += float4(In[i].x - In[id.x].x, In[i].y - In[id.x].y, In[i].z - In[id.x].z, 1);
+
+					closeCount++;
+				}
+			}
+			result /= closeCount;
+
+		}
+
+
+	}
+
+	//I attempted to return multiple texture values at the same time, but this gives
+	//race conditions and i was forced to handle one behaviour calculation per thread.
+	Result[id.xy] = result;
+}
+
+
+/*
+
+METHOD #1
+[numthreads(32,32,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float4 result = float4(0, 0, 0, 0);
+
+	if (id.x < NumberOfBoids && id.y < NumberOfBoids)
+	{
+
+		//A manual squared 3D euclidian norm.
+		float distanceCalc = ((In[id.x].x - In[id.y].x) * (In[id.x].x - In[id.y].x)) +
+							((In[id.x].y - In[id.y].y) * (In[id.x].y - In[id.y].y)) +
+							((In[id.x].z - In[id.y].z) * (In[id.x].z - In[id.y].z));
+
+		if (distanceCalc < ViewDist)
+		{
+			result = float4(In[id.x].x, In[id.x].y, In[id.x].z, distanceCalc);
+		}
+	}
+
+	Result[id.xy] = result;
+}
+
+
+METHOD #2
+[numthreads(32,32,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float4 result = float4(0, 0, 0, 0);
+
+	if (id.x < NumberOfBoids && id.y < NumberOfBoids)
+	{
+
+		//A manual squared 3D euclidian norm.
+		float distanceCalc = ((In[id.x].x - In[id.y].x) * (In[id.x].x - In[id.y].x)) +
+							((In[id.x].y - In[id.y].y) * (In[id.x].y - In[id.y].y)) +
+							((In[id.x].z - In[id.y].z) * (In[id.x].z - In[id.y].z));
+
+		if (distanceCalc < ViewDist)
+		{
+			if (id.x < id.y) result = float4(In[id.x].x - In[id.y].x, In[id.x].y - In[id.y].y, In[id.x].z - In[id.y].z, distanceCalc);
+			else result = float4(InDir[id.x].x - InDir[id.y].x, InDir[id.x].y - InDir[id.y].y, InDir[id.x].z - InDir[id.y].z, distanceCalc);
+		}
+	}
+
+	Result[id.xy] = result;
+}
+
+
+*/
+
+
+

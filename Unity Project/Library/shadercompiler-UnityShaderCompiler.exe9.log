@@ -1,0 +1,91 @@
+Base path: F:/Unity/2018.2.0f2/Editor/Data
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 4 at BoidOptimization.compute(15): signed/unsigned mismatch, unsigned assumed
+  api=4 insize=796 outsize=773 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 4 at BoidOptimization.compute(15): signed/unsigned mismatch, unsigned assumed
+  error: 2 plat 4 at BoidOptimization.compute(23): invalid type for index - index must be a scalar, or a vector with the correct number of dimensions
+  api=4 insize=809 outsize=0 ok=0
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 4 at BoidOptimization.compute(17): signed/unsigned mismatch, unsigned assumed
+  api=4 insize=2019 outsize=1085 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 4 at BoidOptimization.compute(20): signed/unsigned mismatch, unsigned assumed
+  error: 2 plat 4 at BoidOptimization.compute(45): undeclared identifier 'result'
+  api=4 insize=2847 outsize=0 ok=0
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 4 at BoidOptimization.compute(20): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 4 at BoidOptimization.compute(44): comma expression used where a vector constructor may have been intended
+  error: 1 plat 4 at BoidOptimization.compute(44): potentially unintended use of a comma expression in a variable initializer
+  error: 1 plat 4 at BoidOptimization.compute(45): comma expression used where a vector constructor may have been intended
+  error: 1 plat 4 at BoidOptimization.compute(45): potentially unintended use of a comma expression in a variable initializer
+  error: 2 plat 4 at BoidOptimization.compute(50): race condition writing to shared resource detected, consider making this write conditional.
+  api=4 insize=2937 outsize=0 ok=0
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Unhandled exception: Protocol error - unexpected end of data (did the Editor crash?)
+
+Quitting shader compiler process

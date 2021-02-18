@@ -1,0 +1,42 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+
+//OLD DEPRECIATED METHOD
+//THIS METHOD USES THE "SINGLE BOID NEIGHBOR" METHOD
+
+//This is very simple as it just returns the closest boid for 
+//every boid. This was my first working prototype.
+
+#pragma kernel CSMain
+
+int NumberOfBoids;
+StructuredBuffer<float3> In;
+RWStructuredBuffer<int> Result;
+
+[numthreads(1000,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(id.x < NumberOfBoids)
+    {
+        float shortestDistance = 100000;
+        int closestBoid = 0;
+        
+        float3 this = In[id.x];
+        float distanceCalc;
+        
+        for(int i = 1; i < NumberOfBoids; i++)
+        {
+            distanceCalc = ((this.x - In[i].x) * (this.x - In[i].x)) + 
+                           ((this.y - In[i].y) * (this.y - In[i].y)) +
+                           ((this.z - In[i].z) * (this.z - In[i].z));
+
+            if(distanceCalc < shortestDistance && i != id.x)
+            {
+                shortestDistance = distanceCalc;
+                closestBoid = i;
+            }
+        }
+    
+        Result[id.x] = closestBoid;
+    }
+
+}

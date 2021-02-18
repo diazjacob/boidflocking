@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\steven\.Rider2018.1\system\resharper-host\Local\Transient\ReSharperHost\v12\SolutionCaches\_fffffff.2127641084.00" t="ExcludeRecursive" />
+    <e p="C:\Users\steven\Desktop\fffffff" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Iteration1" t="Include">
+            <e p="BoidMovement.cs" t="Include" />
+            <e p="NearestBoid.compute" t="Include" />
+            <e p="TankManager.cs" t="Include" />
+          </e>
+          <e p="Iteration2" t="Include">
+            <e p="AvgNearestBoid.compute" t="Include" />
+            <e p="BoidMovement1.cs" t="Include" />
+            <e p="TankManager1.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="fffffff.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
