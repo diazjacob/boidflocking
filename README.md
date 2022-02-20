@@ -5,7 +5,7 @@ A research paper written in late 2020 on the subject of optimization of boid flo
 
 A visualization of all of the calculations the boids take into account every frame
 
-<img src="/IMAGES/Boid_rays.PNG" width="600">
+<img src="/IMAGES/Boid_behaviourlines.PNG" width="600">
 
 The final result of the optimization:
 
