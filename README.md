@@ -5,14 +5,14 @@ A research paper written in late 2020 on the subject of optimization of boid flo
 
 A visualization of all of the calculations the boids take into account every frame
 
-<img src="/IMAGES/Boid_rays.png" width="600">
+<img src="/IMAGES/Boid_rays.PNG" width="600">
 
 The final result of the optimization:
 
-<img src="/IMAGES/Captureeee.png" width="600">
+<img src="/IMAGES/Captureeee.PNG" width="600">
 
 A visualization of the texture buffer that acts to connect the C# code to the relevant compute shader
 
-<img src="/IMAGES/Final_TextureBuffer.png" width="600">
+<img src="/IMAGES/Final_TextureBuffer.PNG" width="600">
 
 
